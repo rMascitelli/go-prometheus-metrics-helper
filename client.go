@@ -28,7 +28,7 @@ func (p *PrometheusClient) AddNewGauge(metricname string, description string) {
 				Name: metricname, // metric name
 				Help: description,
 			},
-			[]string{"hostname"},
+			[]string{"servicename"},
 		)
 	} else {
 		log.Printf("Metric %s already exists\n", metricname)
@@ -49,17 +49,17 @@ func (p *PrometheusClient) AddNewCounter(metricname string, description string) 
 	}
 }
 
-func (p *PrometheusClient) IncrementCounter(metricname string, hostname string) {
+func (p *PrometheusClient) IncrementCounter(metricname string, servicename string) {
 	if counterVec, ok := p.counters[metricname]; ok {
-		counterVec.WithLabelValues(hostname).Inc()
+		counterVec.WithLabelValues(servicename).Inc()
 	} else {
 		log.Printf("Metric %s doesnt exist\n", metricname)
 	}
 }
 
-func (p *PrometheusClient) SetGaugeVal(metricname string, hostname string, gaugeval float64) {
+func (p *PrometheusClient) SetGaugeVal(metricname string, servicename string, gaugeval float64) {
 	if gaugeVec, ok := p.gauges[metricname]; ok {
-		gaugeVec.WithLabelValues(hostname).Set(gaugeval)
+		gaugeVec.WithLabelValues(servicename).Set(gaugeval)
 	} else {
 		log.Printf("Metric %s doesnt exist\n", metricname)
 	}

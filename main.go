@@ -8,7 +8,7 @@ import (
 
 func main() {
 	p := NewPrometheusClient()
-	hostname := "randomServiceName"
+	servicename := "randomServiceName"
 	p.AddNewCounter("test_counter", "Testing out a counter")
 	p.AddNewGauge("test_gauge", "Testing out a gauge")
 
@@ -18,8 +18,8 @@ func main() {
 	}()
 	for {
 		randfloat := float64(time.Now().Unix()) / 13
-		p.IncrementCounter("test_counter", hostname)
-		p.SetGaugeVal("test_gauge", hostname, randfloat)
+		p.IncrementCounter("test_counter", servicename)
+		p.SetGaugeVal("test_gauge", servicename, randfloat)
 		time.Sleep(time.Second * 2)
 	}
 }
