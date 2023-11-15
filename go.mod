@@ -1,4 +1,4 @@
-module go-prometheus-metrics-helper
+module github.com/rMascitelli/go-prometheus-metrics-helper
 
 go 1.21.3
 
