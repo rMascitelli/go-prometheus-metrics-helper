@@ -42,7 +42,7 @@ func (p *PrometheusClient) AddNewCounter(metricname string, description string) 
 				Name: metricname, // metric name
 				Help: description,
 			},
-			[]string{"hostname"},
+			[]string{"servicename"},
 		)
 	} else {
 		log.Printf("Metric %s already exists\n", metricname)
