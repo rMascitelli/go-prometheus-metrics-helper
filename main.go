@@ -1,13 +1,14 @@
 package main
 
 import (
+	client "github.com/rMascitelli/go-prometheus-metrics-helper/client"
 	"log"
 	"net/http"
 	"time"
 )
 
 func main() {
-	p := NewPrometheusClient()
+	p := client.NewPrometheusClient()
 	servicename := "randomServiceName"
 	p.AddNewCounter("test_counter", "Testing out a counter")
 	p.AddNewGauge("test_gauge", "Testing out a gauge")
